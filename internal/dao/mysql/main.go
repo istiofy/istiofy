@@ -14,6 +14,18 @@ type Dao struct {
 	Db *gorm.DB
 }
 
+func (d *Dao) ClusterDao() dao.ClusterDao {
+	return NewClusterDao(d.Db)
+}
+
+func (d *Dao) MeshDao() dao.MeshDao {
+	return NewMeshDao(d.Db)
+}
+
+func (d *Dao) MeshClusterDao() dao.MeshClusterDao {
+	return NewMeshCluster(d.Db)
+}
+
 func (d *Dao) DemoDbDao() dao.DemoDbDao {
 	return NewDemoDbDao(d.Db)
 }
@@ -46,6 +58,9 @@ func GetDao(opts *db.Options) (dao.Interface, error) {
 
 	initErr := dbIns.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(
 		&model.DemoDb{},
+		&model.Cluster{},
+		&model.Mesh{},
+		&model.MeshCluster{},
 	)
 	if initErr != nil {
 		return nil, fmt.Errorf("failed to init mysql istiofy database: %w", err)

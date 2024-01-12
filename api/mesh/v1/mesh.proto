@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+import "api/general/v1/common.proto";
+
+package istiofy.api.mesh.v1;
+
+option go_package = "github.com/istiofy/istiofy/api/mesh/v1";
+
+message MeshCluster {
+  int64 id = 1;
+  string name = 2;
+  string kube_config = 3;
+  bool with_mesh_control_plane = 4;
+}
+
+message Mesh {
+  int64 id = 1;
+  string name = 2;
+  repeated MeshCluster mesh_clusters = 3;
+}
+
+message CreateMeshRequest {
+  string name = 1;
+  repeated int64 cluster_ids = 2;
+}
+
+message CreateMeshResponse {
+  int64 id = 1;
+}
+
+message GetMeshRequest {
+  int64 mesh_id = 1;
+}
+
+message GetMeshResponse {
+  Mesh item = 1;
+}
+
+message UpdateMeshRequest {
+  int64 mesh_id = 1;
+  optional string name = 2;
+  repeated int64 cluster_ids = 3;
+}
+
+message UpdateMeshResponse {
+  Mesh item = 1;
+}
+
+message DeleteMeshRequest {
+  int64 mesh_id = 1;
+}
+
+message DeleteMeshResponse {
+  int64 id = 1;
+}
+
+message ListMeshRequest {
+  optional int32 page = 1;
+  optional int32 size = 2;
+  optional string keyword = 3;
+}
+
+message ListMeshResponse {
+  repeated Mesh items = 1;
+  istiofy.api.general.v1.Pagination pagination = 2;
+}
+
+
+

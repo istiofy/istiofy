@@ -32,7 +32,7 @@ func (s *DemoDbService) DemoDb(ctx context.Context, req *generalv1.DemoDbRequest
 	}
 	return &generalv1.DemoDbResponse{
 		DemoDb: &generalv1.DemoDb{
-			Id:     demoDb.Id,
+			Id:     demoDb.ID,
 			DemoDb: demoDb.DemoDb,
 		},
 	}, nil

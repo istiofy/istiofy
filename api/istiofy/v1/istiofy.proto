@@ -2,6 +2,7 @@ syntax = "proto3";
 
 import "google/api/annotations.proto";
 import "api/general/v1/demo.proto";
+import "api/mesh/v1/mesh.proto";
 
 option go_package = "github.com/istiofy/istiofy/api/istiofy/v1";
 
@@ -19,4 +20,36 @@ service DemoDb {
       get: "/api/v1/demodb"
     };
   }
+}
+
+service Mesh {
+  rpc Create(istiofy.api.mesh.v1.CreateMeshRequest) returns (istiofy.api.mesh.v1.CreateMeshResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/meshes"
+      body: "*"
+    };
+  }
+
+  rpc Update(istiofy.api.mesh.v1.UpdateMeshRequest) returns (istiofy.api.mesh.v1.UpdateMeshResponse) {
+    option (google.api.http) = {
+      put: "/api/v1/meshes/{mesh_id}"
+      body: "*"
+    };
+  }
+
+  rpc Delete(istiofy.api.mesh.v1.DeleteMeshRequest) returns (istiofy.api.mesh.v1.DeleteMeshResponse) {
+    option (google.api.http) = {
+      delete: "/api/v1/meshes/{mesh_id}"
+    };
+  }
+
+  rpc List(istiofy.api.mesh.v1.ListMeshRequest) returns (istiofy.api.mesh.v1.ListMeshResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/meshes"
+    };
+  }
+}
+
+service Cluster {
+
 }

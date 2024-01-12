@@ -26,12 +26,15 @@ api_gen:
 		--go_out=paths=source_relative:. \
 		--go-grpc_out=paths=source_relative:. \
 		--grpc-gateway_out=paths=source_relative:. \
-		--grpc-gateway-ts_out=paths=source_relative:./dist/sdk/ \
 		--openapiv2_out=logtostderr=true:. \
 		--openapiv2_opt allow_merge=true \
 		--openapiv2_opt output_format=json \
 		--openapiv2_opt merge_file_name="istiofy." \
-		api/istiofy/v1/istiofy.proto api/general/v1/demo.proto
+		api/istiofy/v1/istiofy.proto \
+		api/general/v1/common.proto \
+		api/general/v1/demo.proto \
+		api/mesh/v1/cluster.proto \
+		api/mesh/v1/mesh.proto
 	cp -R *.swagger.json docs/swagger-ui/istiofy.swagger.json
 
 api_clean:

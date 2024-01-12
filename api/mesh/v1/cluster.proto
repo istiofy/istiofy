@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+import "api/general/v1/common.proto";
+
+package istiofy.api.mesh.v1;
+
+option go_package = "github.com/istiofy/istiofy/api/mesh/v1";
+
+message Cluster {
+  int64 id = 1;
+  string name = 2;
+  string kube_config = 3;
+}
+
+message CreateClusterRequest {
+  string name = 1;
+  string kube_config = 2;
+}
+
+message CreateClusterResponse {
+  int64 id = 1;
+}
+
+message UpdateClusterRequest {
+  int64 cluster_id = 1;
+  optional string name = 3;
+  optional string kube_config = 4;
+}
+
+message UpdateClusterResponse {
+  Cluster item = 1;
+}
+
+message DeleteClusterRequest {
+  int64 cluster_id = 1;
+}
+
+message DeleteClusterResponse {
+  int64 id = 1;
+}
+
+message ListClusterRequest {
+  optional int32 page = 1;
+  optional int32 size = 2;
+  optional string keyword = 3;
+}
+
+message ListClusterResponse {
+  repeated Cluster items = 1;
+  istiofy.api.general.v1.Pagination pagination = 2;
+}
+
+
+
