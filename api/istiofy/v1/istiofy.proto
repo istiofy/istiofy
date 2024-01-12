@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+import "api/general/v1/demo.proto";
+
+option go_package = "github.com/istiofy/istiofy/api/istiofy/v1";
+
+service Demo {
+  rpc Demo(istiofy.api.general.v1.DemoRequest) returns (istiofy.api.general.v1.DemoResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/demo"
+    };
+  }
+}
+
+service DemoDb {
+  rpc DemoDb(istiofy.api.general.v1.DemoDbRequest) returns (istiofy.api.general.v1.DemoDbResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/demodb"
+    };
+  }
+}

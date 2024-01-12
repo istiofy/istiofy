@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package istiofy.api.general.v1;
+
+option go_package = "github.com/istiofy/istiofy/api/general/v1";
+
+message Demo {
+  string demo = 1;
+}
+
+message DemoRequest {
+  string demo = 1;
+}
+
+message DemoResponse {
+  Demo demo = 1;
+}
+
+message DemoDb {
+  int64 id = 1;
+  string demo_db = 2;
+}
+
+message DemoDbRequest {
+  string demo_db = 1;
+}
+
+message DemoDbResponse {
+  DemoDb demo_db = 1;
+}

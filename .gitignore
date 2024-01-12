@@ -19,3 +19,32 @@
 
 # Go workspace file
 go.work
+
+.idea/
+.vscode/
+dist/*.tgz
+dist/*.out
+dist/*.xml
+dist/*.html
+dist/*.awk
+dist/sdk/*.json
+charts/*.tgz
+*.tgz
+
+# protobuf gen files
+dist/sdk/apis
+dist/sdk/apis/**/*.ts
+*.ts
+
+# documentation
+api/*/*/*.go
+api/*/*/*.json
+api/*/*.go
+api/*/*.json
+api/**/*.go
+api/**/*.json
+dist/istiofy
+istiofy.swagger.json
+
+# keep
+!docs/swagger-ui/istiofy.swagger.json
