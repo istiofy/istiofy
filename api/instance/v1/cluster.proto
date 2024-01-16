@@ -2,9 +2,9 @@ syntax = "proto3";
 
 import "api/general/v1/common.proto";
 
-package istiofy.api.mesh.v1;
+package istiofy.api.instance.v1;
 
-option go_package = "github.com/istiofy/istiofy/api/mesh/v1";
+option go_package = "github.com/istiofy/istiofy/api/instance/v1";
 
 message Cluster {
   int64 id = 1;

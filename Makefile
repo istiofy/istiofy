@@ -6,7 +6,7 @@ run:
 	dist/istiofy server
 
 lint:
-	golint ./...
+	golangci-lint run --verbose --timeout 50m
 
 .PHONY: api_gen api_install_dep api_clean
 api_install_dep:
@@ -33,8 +33,8 @@ api_gen:
 		api/istiofy/v1/istiofy.proto \
 		api/general/v1/common.proto \
 		api/general/v1/demo.proto \
-		api/mesh/v1/cluster.proto \
-		api/mesh/v1/mesh.proto
+		api/instance/v1/cluster.proto \
+		api/instance/v1/mesh.proto
 	cp -R *.swagger.json docs/swagger-ui/istiofy.swagger.json
 
 api_clean:
