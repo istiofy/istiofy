@@ -14,7 +14,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-const staticPrefix = "/api/project/v1/swagger/"
+const staticPrefix = "/api/swagger/"
 
 type Endpoint struct {
 	Network, Addr string
@@ -37,6 +37,8 @@ func NewGateway(ctx context.Context, conn *grpc.ClientConn, opts []runtime.Serve
 	for _, f := range []func(context.Context, *runtime.ServeMux, *grpc.ClientConn) error{
 		v1.RegisterDemoHandler,
 		v1.RegisterDemoDbHandler,
+		v1.RegisterMeshHandler,
+		v1.RegisterClusterHandler,
 	} {
 		if err := f(ctx, mux, conn); err != nil {
 			return nil, err
